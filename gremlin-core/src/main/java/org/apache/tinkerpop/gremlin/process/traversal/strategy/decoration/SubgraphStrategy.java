@@ -93,8 +93,8 @@ public final class SubgraphStrategy extends AbstractTraversalStrategy<TraversalS
         } else {
             final Traversal.Admin<Edge, ?> vertexPredicate;
             vertexPredicate = __.<Edge>and(
-                    __.inV().filter(this.vertexCriterion),
-                    __.outV().filter(this.vertexCriterion)).asAdmin();
+                    __.inV().filter(this.vertexCriterion.clone()),
+                    __.outV().filter(this.vertexCriterion).clone()).asAdmin();
 
             // if there is a vertex predicate then there is an implied edge filter on vertices even if there is no
             // edge predicate provided by the user.
