@@ -289,9 +289,17 @@ public class SubgraphStrategyProcessTest extends AbstractGremlinProcessTest {
         assertEquals(3, g.V(convertToVertexId("josh")).bothE().count().next().longValue());
         assertEquals(2, sg.V(convertToVertexId("josh")).bothE().count().next().longValue());
         assertEquals(3, g.V(convertToVertexId("josh")).both().count().next().longValue());*/
+/*
 final Traversal<Vertex, Long> t = sg.V(convertToVertexId("josh")).both().count();
 try {
         assertEquals(2, t.next().longValue());
+} catch (IllegalStateException ex) {
+  throw new IllegalStateException(t.toString(), ex);
+}
+*/
+final Traversal<Vertex, Long> t = sg.V(convertToVertexId("josh")).both();
+try {
+        assertEquals(2, t.toList().size());
 } catch (IllegalStateException ex) {
   throw new IllegalStateException(t.toString(), ex);
 }
